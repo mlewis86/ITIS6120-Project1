@@ -13,6 +13,10 @@ VALUES
 	('Medicaid', 'ME444555'),
     ('Cigna', 'CI456789');
 
+INSERT INTO Facility (facility_name)
+VALUES
+	('Emergency Department 1');
+
 INSERT INTO Patients (first_name, last_name, date_of_birth, sex, address, phone_number, email, insurance_id)
 VALUES 
     ('Jared', 'Johnson', '1965-07-12', 'M', '123 Elm St', '456-1234', 'jjohn@gmail.com', 1),
@@ -29,45 +33,45 @@ VALUES
     ('Rick', 'Black', '1969-02-25', 'M', '987 Spruce St', '666-8888', 'rblack@gmail.com', 12);
 
 
-INSERT INTO Providers (first_name, last_name, specialty, phone_number, email)
+INSERT INTO Providers (first_name, last_name, specialty, phone_number, email, facility_id)
 VALUES 
-    ('Allie', 'White', 'Pediatrics', '321-5432', 'awhite@yahoo.com'),
-    ('Stewart', 'James', 'Cardiology', '321-1234', 'sjames@gmail.com'),
-    ('Cathy', 'Curtis', 'Neurology', '987-4321', 'ccurtis@gmail.com'),
-	('Frank', 'Neal', 'Emergency Medicine', '335-4476', 'fneal@gmail.com'),
-	('Hannah', 'Johnston', 'Surgery', '111-2576', 'hjohnston@gmail.com'),
-	('David', 'Beal', 'Emergency Medicine', '432-1111', 'dbeal@yahoo.com'),
-    ('Michael', 'Thompson', 'Cardiology', '321-9876', 'mthompson@yahoo.com'),
-    ('Emily', 'Clark', 'Surgery', '987-6543', 'eclark@gmail.com');
+    ('Allie', 'White', 'Pediatrics', '321-5432', 'awhite@yahoo.com', 1),
+    ('Stewart', 'James', 'Cardiology', '321-1234', 'sjames@gmail.com', 1),
+    ('Cathy', 'Curtis', 'Neurology', '987-4321', 'ccurtis@gmail.com', 1),
+	('Frank', 'Neal', 'Emergency Medicine', '335-4476', 'fneal@gmail.com', 1),
+	('Hannah', 'Johnston', 'Surgery', '111-2576', 'hjohnston@gmail.com', 1),
+	('David', 'Beal', 'Emergency Medicine', '432-1111', 'dbeal@yahoo.com', 1),
+    ('Michael', 'Thompson', 'Cardiology', '321-9876', 'mthompson@yahoo.com', 1),
+    ('Emily', 'Clark', 'Surgery', '987-6543', 'eclark@gmail.com', 1);
 
-INSERT INTO Visits (patient_id, provider_id, visit_time, discharge_time, reason_for_visit, triage_level)
+INSERT INTO Visits (patient_id, provider_id, visit_time, discharge_time, reason_for_visit, triage_level, facility_id)
 VALUES 
-    (1, 2, '2024-10-01 12:00:00', '2024-10-01 14:45:00', 'Chest pain', 'High'),
-    (2, 4, '2024-10-02 03:15:00', '2024-10-02 06:00:00', 'Shortness of breath', 'Medium'),
-    (3, 3, '2024-10-03 12:45:00', '2024-10-03 13:30:00', 'Severe headache', 'Low'),
-    (4, 2, '2024-10-04 14:00:00', '2024-10-04 18:15:00', 'Chest pain', 'High'),
-    (5, 5, '2024-10-05 09:15:00', '2024-10-05 15:00:00', 'Broken arm', 'High'),
-    (6, 2, '2024-10-06 17:45:00', '2024-10-06 21:00:00', 'Chest pain', 'High'),
-    (7, 1, '2024-10-01 09:00:00', '2024-10-01 11:00:00', 'Panic attack', 'Low'),
-    (9, 4, '2024-10-01 12:30:00', '2024-10-01 15:00:00', 'Chest discomfort', 'Medium'),
-    (8, 7, '2024-10-02 10:00:00', '2024-10-02 12:00:00', 'Chest discomfort', 'Medium'),
-    (12, 4, '2024-10-02 14:00:00', '2024-10-02 16:30:00', 'Anxiety', 'Low'),
-    (10, 6, '2024-10-03 11:30:00', '2024-10-03 13:15:00', 'Back pain', 'Medium'),
-    (11, 6, '2024-10-03 15:00:00', '2024-10-03 17:00:00', 'Knee pain', 'High'),
-    (1, 8, '2024-10-04 09:15:00', '2024-10-04 10:45:00', 'Broken arm', 'High'),
-    (7, 1, '2024-10-04 11:00:00', '2024-10-04 12:30:00', 'Breathing issues', 'High');
+    (1, 2, '2024-10-01 12:00:00', '2024-10-01 14:45:00', 'Chest pain', 'High', 1),
+    (2, 4, '2024-10-02 03:15:00', '2024-10-02 06:00:00', 'Shortness of breath', 'Medium', 1),
+    (3, 3, '2024-10-03 12:45:00', '2024-10-03 13:30:00', 'Severe headache', 'Low', 1),
+    (4, 2, '2024-10-04 14:00:00', '2024-10-04 18:15:00', 'Chest pain', 'High', 1),
+    (5, 5, '2024-10-05 09:15:00', '2024-10-05 15:00:00', 'Broken arm', 'High', 1),
+    (6, 2, '2024-10-06 17:45:00', '2024-10-06 21:00:00', 'Chest pain', 'High', 1),
+    (7, 1, '2024-10-01 09:00:00', '2024-10-01 11:00:00', 'Panic attack', 'Low', 1),
+    (9, 4, '2024-10-01 12:30:00', '2024-10-01 15:00:00', 'Chest discomfort', 'Medium', 1),
+    (8, 7, '2024-10-02 10:00:00', '2024-10-02 12:00:00', 'Chest discomfort', 'Medium', 1),
+    (12, 4, '2024-10-02 14:00:00', '2024-10-02 16:30:00', 'Anxiety', 'Low', 1),
+    (10, 6, '2024-10-03 11:30:00', '2024-10-03 13:15:00', 'Back pain', 'Medium', 1),
+    (11, 6, '2024-10-03 15:00:00', '2024-10-03 17:00:00', 'Knee pain', 'High', 1),
+    (1, 8, '2024-10-04 09:15:00', '2024-10-04 10:45:00', 'Broken arm', 'High', 1),
+    (7, 1, '2024-10-04 11:00:00', '2024-10-04 12:30:00', 'Breathing issues', 'High', 1);
 
-INSERT INTO Beds (bed_status, patient_id)
+INSERT INTO Beds (bed_status, patient_id, facility_id)
 VALUES 
-    ('Occupied', 1),
-    ('Occupied', 2),
-    ('Available', NULL),
-    ('Available', NULL),
-    ('Occupied', 3),
-    ('Occupied', 4),
-    ('Occupied', 5),
-    ('Available', NULL),
-    ('Occupied', 6);
+    ('Occupied', 1, 1),
+    ('Occupied', 2, 1),
+    ('Available', NULL, 1),
+    ('Available', NULL, 1),
+    ('Occupied', 3, 1),
+    ('Occupied', 4, 1),
+    ('Occupied', 5, 1),
+    ('Available', NULL, 1),
+    ('Occupied', 6, 1);
 
 INSERT INTO Billing (visit_id, patient_id, insurance_id, total_cost, insurance_covered_amount, amount_due)
 VALUES 
@@ -144,14 +148,14 @@ VALUES
     (14, 'Difficulty breathing');
 
 
-INSERT INTO Supplies (supply_name, quantity_available, unit_price)
+INSERT INTO Supplies (supply_name, quantity_available, facility_id)
 VALUES 
-    ('Syringe', 500, 0.50),
-    ('Bandage', 1000, 0.20),
-    ('Gloves', 2000, 0.15),
-    ('Scalpel', 300, 1.00),
-    ('Gauze', 800, 0.10),
-    ('Thermometer', 150, 2.00);
+    ('Syringe', 500, 1),
+    ('Bandage', 1000, 1),
+    ('Gloves', 2000, 1),
+    ('Scalpel', 300, 1),
+    ('Gauze', 800, 1),
+    ('Thermometer', 150, 1);
 
 
 INSERT INTO Diagnoses (visit_id, provider_id, diagnosis_code, diagnosis_description)
