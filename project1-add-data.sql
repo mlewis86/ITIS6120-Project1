@@ -1,3 +1,4 @@
+-- Add test data to Insurance table
 INSERT INTO Insurance (insurance_provider, policy_number)
 VALUES 
     ('Aetna', 'AA789356'),
@@ -13,10 +14,12 @@ VALUES
 	('Medicaid', 'ME444555'),
     ('Cigna', 'CI456789');
 
+-- Add test data to Facility table
 INSERT INTO Facility (facility_name)
 VALUES
 	('Emergency Department 1');
 
+-- Add test data to Patients table
 INSERT INTO Patients (first_name, last_name, date_of_birth, sex, address, phone_number, email, insurance_id)
 VALUES 
     ('Jared', 'Johnson', '1965-07-12', 'M', '123 Elm St', '456-1234', 'jjohn@gmail.com', 1),
@@ -32,7 +35,7 @@ VALUES
     ('Julia', 'White', '1985-07-14', 'F', '654 Pine St', '111-0000', 'jwhite@gmail.com', 11),
     ('Rick', 'Black', '1969-02-25', 'M', '987 Spruce St', '666-8888', 'rblack@gmail.com', 12);
 
-
+-- Add test data to Providers table
 INSERT INTO Providers (first_name, last_name, specialty, phone_number, email, facility_id)
 VALUES 
     ('Allie', 'White', 'Pediatrics', '321-5432', 'awhite@yahoo.com', 1),
@@ -44,6 +47,7 @@ VALUES
     ('Michael', 'Thompson', 'Cardiology', '321-9876', 'mthompson@yahoo.com', 1),
     ('Emily', 'Clark', 'Surgery', '987-6543', 'eclark@gmail.com', 1);
 
+-- Add test data to Visits table
 INSERT INTO Visits (patient_id, provider_id, visit_time, discharge_time, reason_for_visit, triage_level, facility_id)
 VALUES 
     (1, 2, '2024-10-01 12:00:00', '2024-10-01 14:45:00', 'Chest pain', 'High', 1),
@@ -61,6 +65,7 @@ VALUES
     (1, 8, '2024-10-04 09:15:00', '2024-10-04 10:45:00', 'Broken arm', 'High', 1),
     (7, 1, '2024-10-04 11:00:00', '2024-10-04 12:30:00', 'Breathing issues', 'High', 1);
 
+-- Add test data to Beds table
 INSERT INTO Beds (bed_status, patient_id, facility_id)
 VALUES 
     ('Occupied', 1, 1),
@@ -73,6 +78,7 @@ VALUES
     ('Available', NULL, 1),
     ('Occupied', 6, 1);
 
+-- Add test data to Billing table
 INSERT INTO Billing (visit_id, patient_id, insurance_id, total_cost, insurance_covered_amount, amount_due)
 VALUES 
     (1, 1, 1, 550.00, 400.00, 150.00),
@@ -90,7 +96,7 @@ VALUES
 	(13, 1, 1, 300.00, 250.00, 50.00),
     (14, 7, 7, 300.00, 250.00, 50.00);
 
-
+-- Add test data to Test_and_Procedure table
 INSERT INTO Test_and_Procedure (visit_id, provider_id, test_name, status, results)
 VALUES 
     (1, 2, 'ECG', 'Completed', 'Normal'),
@@ -108,6 +114,7 @@ VALUES
 	(13, 8, 'X-Ray', 'Completed', 'Fracture detected'),
 	(14, 1, 'Pulmonary Function Test', 'Completed', 'No abnormalities');
 
+-- Add test data to Prescriptions table
 INSERT INTO Prescriptions (visit_id, provider_id, medication_name, dosage)
 VALUES 
     (1, 2, 'Aspirin', '100mg'),
@@ -124,7 +131,7 @@ VALUES
     (13, 8, 'Ibuprofen', '50mg'),
     (14, 1, 'Sertraline', '25mg');
 
-
+-- Add test data to Symptoms table
 INSERT INTO Symptoms (visit_id, symptom)
 VALUES 
     (1, 'Sharp chest pain'),
@@ -147,7 +154,7 @@ VALUES
     (13, 'Severe pain in arm'),
     (14, 'Difficulty breathing');
 
-
+-- Add test data to Supplies table
 INSERT INTO Supplies (supply_name, quantity_available, facility_id)
 VALUES 
     ('Syringe', 500, 1),
@@ -157,7 +164,7 @@ VALUES
     ('Gauze', 800, 1),
     ('Thermometer', 150, 1);
 
-
+-- Add test data to Diagnoses table
 INSERT INTO Diagnoses (visit_id, provider_id, diagnosis_code, diagnosis_description)
 VALUES 
     (1, 2, 'I20', 'Stable angina'),

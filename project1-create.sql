@@ -17,7 +17,7 @@ CREATE TABLE Facility (
     facility_name VARCHAR(100) NOT NULL
 );
 
--- Create the Patients table with named foreign key constraint
+-- Create the Patients table 
 CREATE TABLE Patients (
     patient_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE Patients (
     CONSTRAINT fk_insurance FOREIGN KEY (insurance_id) REFERENCES Insurance(insurance_id)
 );
 
--- Create the Providers table with named foreign key constraint
+-- Create the Providers table 
 CREATE TABLE Providers (
     provider_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE Providers (
     CONSTRAINT fk_provider_facility FOREIGN KEY (facility_id) REFERENCES Facility(facility_id)
 );
 
--- Create the Visits table with named foreign key constraints
+-- Create the Visits table 
 CREATE TABLE Visits (
     visit_id INT PRIMARY KEY AUTO_INCREMENT,
     patient_id INT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE Visits (
     CONSTRAINT fk_provider_visit FOREIGN KEY (provider_id) REFERENCES Providers(provider_id)
 );
 
--- Create the Beds table with named foreign key constraint
+-- Create the Beds table 
 CREATE TABLE Beds (
     bed_id INT PRIMARY KEY AUTO_INCREMENT,
     bed_status VARCHAR(50) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE Beds (
     CONSTRAINT fk_patient_bed FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
 );
 
--- Create the Billing table with named foreign key constraints
+-- Create the Billing table 
 CREATE TABLE Billing (
     billing_id INT PRIMARY KEY AUTO_INCREMENT,
     visit_id INT NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE Billing (
     CONSTRAINT fk_insurance_billing FOREIGN KEY (insurance_id) REFERENCES Insurance(insurance_id)
 );
 
--- Create the Test_and_Procedure table with named foreign key constraints
+-- Create the Test_and_Procedure table 
 CREATE TABLE Test_and_Procedure (
     test_procedure_id INT PRIMARY KEY AUTO_INCREMENT,
     visit_id INT NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE Test_and_Procedure (
     CONSTRAINT fk_provider_test FOREIGN KEY (provider_id) REFERENCES Providers(provider_id)
 );
 
--- Create the Prescriptions table with named foreign key constraints
+-- Create the Prescriptions table 
 CREATE TABLE Prescriptions (
     prescription_id INT PRIMARY KEY AUTO_INCREMENT,
     visit_id INT NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE Prescriptions (
     CONSTRAINT fk_provider_prescription FOREIGN KEY (provider_id) REFERENCES Providers(provider_id)
 );
 
--- Create the Symptoms table with named foreign key constraint
+-- Create the Symptoms table 
 CREATE TABLE Symptoms (
     symptom_id INT PRIMARY KEY AUTO_INCREMENT,
     visit_id INT NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE Supplies (
     CONSTRAINT fk_supply_facility FOREIGN KEY (facility_id) REFERENCES Facility(facility_id)
 );
 
--- Create the Diagnoses table with named foreign key constraints
+-- Create the Diagnoses table 
 CREATE TABLE Diagnoses (
     diagnosis_id INT PRIMARY KEY AUTO_INCREMENT,
     visit_id INT NOT NULL,
@@ -132,3 +132,4 @@ CREATE TABLE Diagnoses (
     CONSTRAINT fk_visit_diagnosis FOREIGN KEY (visit_id) REFERENCES Visits(visit_id),
     CONSTRAINT fk_provider_diagnosis FOREIGN KEY (provider_id) REFERENCES Providers(provider_id)
 );
+
