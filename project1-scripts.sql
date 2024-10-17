@@ -1,7 +1,7 @@
 -- Update Patient address and insurance_id
 UPDATE Patients
 SET address = '456 Oak Lane',
-    insurance_id = 3
+    policy_number = 'MC123098'
 WHERE patient_id = 1;
 
 -- Delete all symptoms from a specific visit
@@ -87,9 +87,10 @@ WHERE bed_status = 'Available';
 -- Find the total cost of all visits for a certain patient
 SELECT p.first_name, p.last_name, SUM(b.total_cost) AS total_cost
 FROM Patients p
-JOIN Billing b ON p.patient_id = b.patient_id
+JOIN Visits v ON p.patient_id = v.patient_id
+JOIN Billing b ON v.billing_id = b.billing_id
 WHERE p.patient_id = 1
-GROUP BY p.patient_id;
+GROUP BY p.first_name, p.last_name;
 
 -- List all providers and the number of patients they have had
 SELECT pr.first_name, pr.last_name, COUNT(DISTINCT v.patient_id) AS total_patients
@@ -100,8 +101,9 @@ GROUP BY pr.provider_id;
 -- List the patients with the highest medical bills
 SELECT p.first_name, p.last_name, SUM(b.amount_due) AS total_due
 FROM Patients p
-JOIN Billing b ON p.patient_id = b.patient_id
-GROUP BY p.patient_id
+JOIN Visits v ON p.patient_id = v.patient_id
+JOIN Billing b ON v.billing_id = b.billing_id
+GROUP BY p.patient_id, p.first_name, p.last_name
 ORDER BY total_due DESC
 LIMIT 5;
 
@@ -122,7 +124,7 @@ WHERE pr.specialty = 'Emergency Medicine';
 -- Find the average cost of visit per each triage level
 SELECT v.triage_level, ROUND(AVG(b.total_cost), 2) AS average_cost
 FROM Visits v
-JOIN Billing b ON v.visit_id = b.visit_id
+JOIN Billing b ON v.billing_id = b.billing_id
 GROUP BY v.triage_level;
 
 -- Providers who treat more than the average number of patients and how many patients they treat

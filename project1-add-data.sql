@@ -20,20 +20,20 @@ VALUES
 	('Emergency Department 1');
 
 -- Add test data to Patients table
-INSERT INTO Patients (first_name, last_name, date_of_birth, sex, address, phone_number, email, insurance_id)
+INSERT INTO Patients (first_name, last_name, date_of_birth, sex, address, phone_number, email, policy_number)
 VALUES 
-    ('Jared', 'Johnson', '1965-07-12', 'M', '123 Elm St', '456-1234', 'jjohn@gmail.com', 1),
-    ('Sharon', 'Smith', '2000-12-10', 'F', '456 Kyle St', '565-1679', 'ssmith@yahoo.com', 2),
-    ('Michael', 'Jordan', '1958-09-02', 'M', '789 Lakewood St', '123-4355', 'mjordan@gmail.com', 3),
-    ('Nick', 'Williams', '1988-06-25', 'M', '165 Rich Lane', '654-2314', 'nwilliams@yahoo.com', 4),
-    ('Hazel', 'Matthews', '1990-01-17', 'F', '246 Palm Dr', '123-4567', 'hmatthews@gmail.com', 5),
-    ('Haley', 'James', '1973-03-29', 'F', '208 Jones Dr', '345-8560', 'hjames@gmail.com', 6),
-    ('Ella', 'Roberts', '2015-05-20', 'F', '123 Maple St', '555-9876', 'eroberts@gmail.com', 7),
-    ('Tom', 'Harris', '1982-08-11', 'M', '456 Cedar St', '444-3210', 'tharris@gmail.com', 8),
-    ('Kate', 'Brown', '1975-04-30', 'F', '789 Birch St', '333-7654', 'kbrown@gmail.com', 9),
-    ('Chris', 'Davis', '1990-11-01', 'M', '321 Oak St', '222-1234', 'cdavis@gmail.com', 10),
-    ('Julia', 'White', '1985-07-14', 'F', '654 Pine St', '111-0000', 'jwhite@gmail.com', 11),
-    ('Rick', 'Black', '1969-02-25', 'M', '987 Spruce St', '666-8888', 'rblack@gmail.com', 12);
+    ('Jared', 'Johnson', '1965-07-12', 'M', '123 Elm St', '456-1234', 'jjohn@gmail.com', 'AA789356'),
+    ('Sharon', 'Smith', '2000-12-10', 'F', '456 Kyle St', '565-1679', 'ssmith@yahoo.com', 'BC430023'),
+    ('Michael', 'Jordan', '1958-09-02', 'M', '789 Lakewood St', '123-4355', 'mjordan@gmail.com', 'AA123877'),
+    ('Nick', 'Williams', '1988-06-25', 'M', '165 Rich Lane', '654-2314', 'nwilliams@yahoo.com', 'MC123098'),
+    ('Hazel', 'Matthews', '1990-01-17', 'F', '246 Palm Dr', '123-4567', 'hmatthews@gmail.com', 'ME544321'),
+    ('Haley', 'James', '1973-03-29', 'F', '208 Jones Dr', '345-8560', 'hjames@gmail.com', 'BC475890'),
+    ('Ella', 'Roberts', '2015-05-20', 'F', '123 Maple St', '555-9876', 'eroberts@gmail.com', 'UH123456'),
+    ('Tom', 'Harris', '1982-08-11', 'M', '456 Cedar St', '444-3210', 'tharris@gmail.com', 'MC000008'),
+    ('Kate', 'Brown', '1975-04-30', 'F', '789 Birch St', '333-7654', 'kbrown@gmail.com', 'UH234321'),
+    ('Chris', 'Davis', '1990-11-01', 'M', '321 Oak St', '222-1234', 'cdavis@gmail.com', 'CI345671'),
+    ('Julia', 'White', '1985-07-14', 'F', '654 Pine St', '111-0000', 'jwhite@gmail.com', 'ME444555'),
+    ('Rick', 'Black', '1969-02-25', 'M', '987 Spruce St', '666-8888', 'rblack@gmail.com', 'CI456789');
 
 -- Add test data to Providers table
 INSERT INTO Providers (first_name, last_name, specialty, phone_number, email, facility_id)
@@ -46,24 +46,42 @@ VALUES
 	('David', 'Beal', 'Emergency Medicine', '432-1111', 'dbeal@yahoo.com', 1),
     ('Michael', 'Thompson', 'Cardiology', '321-9876', 'mthompson@yahoo.com', 1),
     ('Emily', 'Clark', 'Surgery', '987-6543', 'eclark@gmail.com', 1);
-
+    
+-- Add test data to Billing table
+INSERT INTO Billing (total_cost, insurance_covered_amount, amount_due) VALUES 
+    (550.00, 400.00, 150.00),
+    (320.00, 250.00, 70.00),
+    (700.00, 500.00, 200.00),
+    (450.00, 350.00, 100.00),
+    (600.00, 500.00, 100.00),
+    (300.00, 250.00, 50.00),
+    (250.00, 200.00, 50.00),
+    (420.00, 300.00, 120.00),
+    (360.00, 280.00, 80.00),
+    (480.00, 400.00, 80.00),
+    (500.00, 450.00, 50.00),
+    (300.00, 250.00, 50.00),
+    (300.00, 250.00, 50.00),
+    (700.00, 600.00, 100.00);
+    
+    
 -- Add test data to Visits table
-INSERT INTO Visits (patient_id, provider_id, visit_time, discharge_time, reason_for_visit, triage_level, facility_id)
+INSERT INTO Visits (patient_id, provider_id, visit_time, discharge_time, reason_for_visit, triage_level, facility_id, billing_id) 
 VALUES 
-    (1, 2, '2024-10-01 12:00:00', '2024-10-01 14:45:00', 'Chest pain', 'High', 1),
-    (2, 4, '2024-10-02 03:15:00', '2024-10-02 06:00:00', 'Shortness of breath', 'Medium', 1),
-    (3, 3, '2024-10-03 12:45:00', '2024-10-03 13:30:00', 'Severe headache', 'Low', 1),
-    (4, 2, '2024-10-04 14:00:00', '2024-10-04 18:15:00', 'Chest pain', 'High', 1),
-    (5, 5, '2024-10-05 09:15:00', '2024-10-05 15:00:00', 'Broken arm', 'High', 1),
-    (6, 2, '2024-10-06 17:45:00', '2024-10-06 21:00:00', 'Chest pain', 'High', 1),
-    (7, 1, '2024-10-01 09:00:00', '2024-10-01 11:00:00', 'Panic attack', 'Low', 1),
-    (9, 4, '2024-10-01 12:30:00', '2024-10-01 15:00:00', 'Chest discomfort', 'Medium', 1),
-    (8, 7, '2024-10-02 10:00:00', '2024-10-02 12:00:00', 'Chest discomfort', 'Medium', 1),
-    (12, 4, '2024-10-02 14:00:00', '2024-10-02 16:30:00', 'Anxiety', 'Low', 1),
-    (10, 6, '2024-10-03 11:30:00', '2024-10-03 13:15:00', 'Back pain', 'Medium', 1),
-    (11, 6, '2024-10-03 15:00:00', '2024-10-03 17:00:00', 'Knee pain', 'High', 1),
-    (1, 8, '2024-10-04 09:15:00', '2024-10-04 10:45:00', 'Broken arm', 'High', 1),
-    (7, 1, '2024-10-04 11:00:00', '2024-10-04 12:30:00', 'Breathing issues', 'High', 1);
+    (1, 2, '2024-10-01 12:00:00', '2024-10-01 14:45:00', 'Chest pain', 'High', 1, 1),
+    (2, 4, '2024-10-02 03:15:00', '2024-10-02 06:00:00', 'Shortness of breath', 'Medium', 1, 2),
+    (3, 3, '2024-10-03 12:45:00', '2024-10-03 13:30:00', 'Severe headache', 'Low', 1, 3),
+    (4, 2, '2024-10-04 14:00:00', '2024-10-04 18:15:00', 'Chest pain', 'High', 1, 4),
+    (5, 5, '2024-10-05 09:15:00', '2024-10-05 15:00:00', 'Broken arm', 'High', 1, 5),
+    (6, 2, '2024-10-06 17:45:00', '2024-10-06 21:00:00', 'Chest pain', 'High', 1, 6),
+    (7, 1, '2024-10-01 09:00:00', '2024-10-01 11:00:00', 'Panic attack', 'Low', 1, 7),
+    (9, 4, '2024-10-01 12:30:00', '2024-10-01 15:00:00', 'Chest discomfort', 'Medium', 1, 8),
+    (8, 7, '2024-10-02 10:00:00', '2024-10-02 12:00:00', 'Chest discomfort', 'Medium', 1, 9),
+    (12, 4, '2024-10-02 14:00:00', '2024-10-02 16:30:00', 'Anxiety', 'Low', 1, 10),
+    (10, 6, '2024-10-03 11:30:00', '2024-10-03 13:15:00', 'Back pain', 'Medium', 1, 11),
+    (11, 6, '2024-10-03 15:00:00', '2024-10-03 17:00:00', 'Knee pain', 'High', 1, 12),
+    (1, 8, '2024-10-04 09:15:00', '2024-10-04 10:45:00', 'Broken arm', 'High', 1, 13),
+    (7, 1, '2024-10-04 11:00:00', '2024-10-04 12:30:00', 'Breathing issues', 'High', 1, 14);
 
 -- Add test data to Beds table
 INSERT INTO Beds (bed_status, patient_id, facility_id)
@@ -79,23 +97,22 @@ VALUES
     ('Occupied', 6, 1);
 
 -- Add test data to Billing table
-INSERT INTO Billing (visit_id, patient_id, insurance_id, total_cost, insurance_covered_amount, amount_due)
-VALUES 
-    (1, 1, 1, 550.00, 400.00, 150.00),
-    (2, 2, 2, 320.00, 250.00, 70.00),
-    (3, 3, 3, 700.00, 500.00, 200.00),
-    (4, 4, 4, 450.00, 350.00, 100.00),
-    (5, 5, 5, 600.00, 500.00, 100.00),
-    (6, 6, 6, 300.00, 250.00, 50.00),
-    (7, 7, 7, 250.00, 200.00, 50.00),
-    (8, 8, 8, 420.00, 300.00, 120.00),
-    (9, 9, 9, 360.00, 280.00, 80.00),
-    (10, 10, 10, 480.00, 400.00, 80.00),
-    (11, 11, 11, 500.00, 450.00, 50.00),
-    (12, 12, 12, 300.00, 250.00, 50.00),
-	(13, 1, 1, 300.00, 250.00, 50.00),
-    (14, 7, 7, 300.00, 250.00, 50.00);
-
+INSERT INTO Billing (total_cost, insurance_covered_amount, amount_due) VALUES 
+    (550.00, 400.00, 150.00),
+    (320.00, 250.00, 70.00),
+    (700.00, 500.00, 200.00),
+    (450.00, 350.00, 100.00),
+    (600.00, 500.00, 100.00),
+    (300.00, 250.00, 50.00),
+    (250.00, 200.00, 50.00),
+    (420.00, 300.00, 120.00),
+    (360.00, 280.00, 80.00),
+    (480.00, 400.00, 80.00),
+    (500.00, 450.00, 50.00),
+    (300.00, 250.00, 50.00),
+    (300.00, 250.00, 50.00),
+    (700.00, 600.00, 100.00);
+    
 -- Add test data to Test_and_Procedure table
 INSERT INTO Test_and_Procedure (visit_id, provider_id, test_name, status, results)
 VALUES 
