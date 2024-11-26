@@ -13,12 +13,18 @@ const mysqlConnection = mysql.createConnection({
 
 
 // MongoDB Connection for User Authentication
-mongoose.connect('mongodb://localhost:27017/userAuthentication')
-    .then(() => {
-        console.log('MongoDB connected for user authentication.');
-    })
-    .catch(err => {
-        console.error('Error connecting to MongoDB:', err);
-    });
+const connectDB = async () => {
+        try {
+            await mongoose.connect('mongodb://localhost:27017/userAuthentication', {
+              
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+            console.log('Connected to MongoDB');
+        } catch (error) {
+            console.error('Error connecting to MongoDB:', error.message);
+            process.exit(1);
+        }
+    };
 
-module.exports = { mysqlConnection, mongoose };
+module.exports = { mysqlConnection, mongoose, connectDB };

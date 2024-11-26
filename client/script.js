@@ -16,6 +16,7 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
         });
 
         const data = await response.json();
+        console.log('Response:', data);
         if (response.ok) {
             alert('User registered successfully!');
         } else {

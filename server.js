@@ -1,24 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Allow cross-origin requests
-const authRoutes = require('./routes/auth'); // Import the authentication routes
+const cors = require('cors'); 
+const authRoutes = require('./routes/auth'); 
+const { connectDB } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(bodyParser.json()); // To parse JSON request body
-app.use(cors()); // Enable CORS for the frontend
-app.use(express.static('client')); // Serve static files from client folder
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.static('client'));
+app.use(express.json());
 
-// Database connection
-mongoose.connect('mongodb://localhost/Emergency_Department', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Error connecting to MongoDB:', err));
+// Connect to the database
+connectDB();
 
 // Routes
-app.use('/auth', authRoutes); // Link the authentication routes
+app.use('/auth', authRoutes);
 
 // Start the server
 app.listen(PORT, () => {
