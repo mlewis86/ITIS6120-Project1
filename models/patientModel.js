@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 
-const patientSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  age: { type: Number, required: true },
-  condition: { type: String, required: true },
-  doctorAssigned: { type: String, required: true },
-  status: { type: String, enum: ['critical', 'stable', 'discharged'], required: true },
+const PatientSchema = new mongoose.Schema({
+    username: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    role: { type: String, required: true },
+    medicalHistory: { type: String, required: true },
+    emergencyContact: { type: String, required: true },
+    status: { type: String, default: 'active' } 
 });
 
-const Patient = mongoose.model('Patient', patientSchema);
+// Use PatientSchema here
+const Patient = mongoose.model('Patient', PatientSchema);
 
 module.exports = Patient;

@@ -1,23 +1,42 @@
-// middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const Doctor = require('../models/doctorModel');
+const Patient = require('../models/patientModel');
 
+// Middleware to verify token
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(403).json({ message: 'Access denied. No token provided.' });
 
-// Middleware to check if the user is authenticated
-const authenticateToken = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-  
-  if (!token) return res.status(401).json({ message: 'Access denied' });
-
-  jwt.verify(token, 'your_jwt_secret', async (err, user) => {
-    if (err) return res.status(403).json({ message: 'Invalid token' });
-    
-    const foundUser = await User.findById(user._id);
-    if (!foundUser) return res.status(404).json({ message: 'User not found' });
-
-    req.user = foundUser;
-    next();
-  });
+    try {
+        const decoded = jwt.verify(token, 'your_jwt_secret');
+        req.user = decoded;
+        next();
+    } catch (error) {
+        res.status(401).json({ message: 'Invalid token.' });
+    }
 };
 
-module.exports = authenticateToken;
+// Middleware to restrict routes based on roles
+const authMiddleware = (allowedRoles = []) => async (req, res, next) => {
+    try {
+        const { userId, role } = req.user;
+
+        // Fetch user from the appropriate collection
+        let user;
+        if (role === 'patient') user = await Patient.findById(userId);
+        else if (role === 'doctor') user = await Doctor.findById(userId);
+        else user = await User.findById(userId);
+
+        if (!user || !allowedRoles.includes(role)) {
+            return res.status(403).json({ message: 'Access denied. Insufficient permissions.' });
+        }
+
+        req.userDetails = user; // Attach user details to request
+        next();
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error.' });
+    }
+};
+
+module.exports = { verifyToken, authMiddleware };

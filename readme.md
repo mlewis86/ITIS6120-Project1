@@ -1,16 +1,16 @@
 ├── server.js
 ├── db.js
 ├── routes/
-│   ├── auth.js
-│   ├── users.js
-│   ├── patients.js
+│   ├── auth.js         <-- Authentication routes (signup, login)
 ├── middleware/
-│   ├── authMiddleware.js
+│   ├── authMiddleware.js <-- Middleware for authentication/authorization
 ├── models/
-│   ├── userModel.js
-│   ├── patientModel.js
-├── client/           <-- Folder containing the HTML, JS, CSS
-│   ├── index.html    <-- Main entry point for frontend
-│   ├── login.html    <-- Login page
-│   ├── signup.html   <-- Signup page
-│   ├── script.js "const User = require('./models/userModel');
+│   ├── userModel.js    <-- User schema
+│   ├── patientModel.js <-- Patient schema
+│   ├── doctorModel.js  <-- Doctor schemaa
+├── client/
+│   ├── login.html      <-- Main entry and Login page
+│   ├── signup.html     <-- Signup page
+│   ├── dashboard.html  <-- Shared dashboard
+dashboard
+│   ├── script.js       <-- Handles role-based redirection
