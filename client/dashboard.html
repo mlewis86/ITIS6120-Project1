@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-</head>
-<body>
-    <h1>Welcome to the Dashboard</h1>
-    <div id="role-specific-content"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const role = localStorage.getItem("role");
 
-    <!-- Search bar -->
-    <div>
-        <h3>Search</h3>
-        <input type="text" id="search-bar" placeholder="Enter search terms" />
-        <button id="search-btn">Search</button>
-        <p id="search-results"></p>
-    </div>
-
-    <!-- Sign out option -->
-    <button id="logout-btn">Sign Out</button>
-
-    <script src="script.js"></script>
-</body>
+        if (role === "doctor") {
+          window.location.href = "doctor_dashboard.html";
+        } else if (role === "patient") {
+          window.location.href = "patient_dashboard.html";
+        } else {
+          alert("Unauthorized access or role not recognized.");
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
 </html>
